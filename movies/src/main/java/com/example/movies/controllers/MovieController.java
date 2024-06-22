@@ -2,7 +2,6 @@ package com.example.movies.controllers;
 
 import com.example.movies.models.Movie;
 import com.example.movies.services.MovieService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
