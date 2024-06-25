@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: black;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: black;
+    color: white;
+    margin-top: 10px;
+}
+.movie-carousel-container,
+.movie-card-container {
+    background-color: black;
+}
+  
