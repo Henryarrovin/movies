@@ -19,7 +19,6 @@ function App() {
     try {
       const response = await api.get('/movies');
       setMovies(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +29,7 @@ function App() {
         const response = await api.get(`/movies/${movieId}`);
         const singleMovie = response.data;
         setMovie(singleMovie);
-        setReviews(singleMovie.reviews);
+        setReviews(singleMovie.reviewIds);
     } catch (error) {
       console.error(error);
     }
