@@ -3,7 +3,6 @@ package com.example.movies.services.impl;
 import com.example.movies.models.Movie;
 import com.example.movies.repositories.MovieRepository;
 import com.example.movies.services.MovieService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
