@@ -1,0 +1,59 @@
+.watchlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.watchlist-container .movie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.watchlist-container .movie-card:hover {
+    transform: translateY(-5px);
+}
+
+.watchlist-container .movie-poster {
+    position: relative;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    overflow: hidden;
+}
+
+.watchlist-container .movie-poster img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.watchlist-container .like-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    opacity: 0; /* Initially hide the like button */
+}
+
+.watchlist-container .movie-card:hover .like-button {
+    opacity: 1; /* Show the like button when movie card is hovered */
+}
+
+.watchlist-container .like-button:hover {
+    transform: scale(1.1);
+}
+
+.watchlist-container .like-button .fa-heart {
+    color: #e74c3c;
+    font-size: 1.5rem;
+}
+
+.watchlist-container .like-button .fa-heart.liked {
+    color: #e74c3c;
+}

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
+import Movies from './Movies';
 
 const Hero = ({ movies }) => {
 
@@ -17,7 +18,7 @@ const Hero = ({ movies }) => {
     
   return (
     <div className='movie-carousal-container'>
-      <Carousal>
+        <Carousal>
         {
             movies.map(movie => (
                 <Paper key={movie.imdbId}>
@@ -49,7 +50,11 @@ const Hero = ({ movies }) => {
                 </Paper>
             ))
         }
-      </Carousal>
+        </Carousal>
+        <div className="movie-title">
+            <h4>Movies</h4>
+        </div>
+        <Movies movies={movies} />
     </div>
   )
 }
