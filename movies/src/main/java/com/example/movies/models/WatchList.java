@@ -16,6 +16,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WatchList {
 
     @Id
-    private ObjectId id;
+    private String imdbId;
 
 }

@@ -23,9 +23,9 @@ public class WatchListController {
         return new ResponseEntity<>(watchListService.getAllWatchLists(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WatchList> getOneWatchList(@PathVariable ObjectId id) {
-        return new ResponseEntity<>(watchListService.getOneWatchList(id), HttpStatus.OK);
+    @GetMapping("/{imdbId}")
+    public ResponseEntity<WatchList> getOneWatchList(@PathVariable String imdbId) {
+        return new ResponseEntity<>(watchListService.getOneWatchList(imdbId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -35,8 +35,8 @@ public class WatchListController {
     }
 
     @DeleteMapping
-    public ResponseEntity<String> removeWatchList(@RequestParam ObjectId id) {
-        watchListService.removeWatchList(id);
+    public ResponseEntity<String> removeWatchList(@RequestParam String imdbId) {
+        watchListService.removeWatchList(imdbId);
         return new ResponseEntity<>("Removed!", HttpStatus.NO_CONTENT);
     }
 }

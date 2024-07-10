@@ -9,4 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface WatchListRepository extends MongoRepository<WatchList, ObjectId> {
+
+    Optional<WatchList> findByImdbId(String imdbId);
+
+    void deleteByImdbId(String imdbId);
+
 }

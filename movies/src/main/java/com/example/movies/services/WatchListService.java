@@ -9,10 +9,10 @@ public interface WatchListService {
 
     public List<WatchList> getAllWatchLists();
 
-    public WatchList getOneWatchList(ObjectId id);
+    public WatchList getOneWatchList(String imdbId);
 
     public WatchList createWatchList(WatchList watchList);
 
-    public void removeWatchList(ObjectId id);
+    public void removeWatchList(String imdbId);
 
 }

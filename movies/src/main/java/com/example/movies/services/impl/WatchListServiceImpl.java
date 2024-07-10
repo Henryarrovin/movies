@@ -25,15 +25,15 @@ public class WatchListServiceImpl implements WatchListService {
     }
 
     @Override
-    public WatchList getOneWatchList(ObjectId id) {
-        return watchListRepository.findById(id).orElse(null);
+    public WatchList getOneWatchList(String imdbId) {
+        return watchListRepository.findByImdbId(imdbId).orElse(null);
     }
 
     @Override
     public WatchList createWatchList(WatchList watchList) {
 
-        if (watchListRepository.findById(watchList.getId()).isPresent()) {
-            return watchListRepository.findById(watchList.getId()).get();
+        if (watchListRepository.findByImdbId(watchList.getImdbId()).isPresent()) {
+            return watchListRepository.findByImdbId(watchList.getImdbId()).get();
         }
 
         return watchListRepository.save(watchList);
@@ -41,7 +41,7 @@ public class WatchListServiceImpl implements WatchListService {
     }
 
     @Override
-    public void removeWatchList(ObjectId id) {
-        watchListRepository.deleteById(id);
+    public void removeWatchList(String imdbId) {
+        watchListRepository.deleteByImdbId(imdbId);
     }
 }

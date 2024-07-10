@@ -8,12 +8,14 @@ import Header from './components/header/Header';
 import Trailer from './components/trailer/Trailer';
 import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notFound/NotFound';
+import WatchList from './components/watchlist/WatchList';
 
 function App() {
 
   const [movies, setMovies] = useState([]);
   const [movie, setMovie] = useState();
   const [reviews, setReviews] = useState([]);
+  const [watchList, setWatchList] = useState([]);
 
   const getMovies = async () => {
     try {
@@ -26,10 +28,30 @@ function App() {
 
   const getMovieData = async (movieId) => {
     try {
+      const response = await api.get(`/movies/${movieId}`);
+      const singleMovie = response.data;
+      setMovie(singleMovie);
+      setReviews(singleMovie.reviewIds);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getMovie = async (movieId) => {
+    try {
         const response = await api.get(`/movies/${movieId}`);
-        const singleMovie = response.data;
-        setMovie(singleMovie);
-        setReviews(singleMovie.reviewIds);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching movie data:', error);
+        return null;
+    }
+}
+
+
+  const getWatchList = async () => {
+    try {
+      const response = await api.get('/watch-lists');
+      setWatchList(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -37,6 +59,7 @@ function App() {
 
   useEffect(() => {
     getMovies();
+    getWatchList();
   }, []);
   
   return (
@@ -47,7 +70,8 @@ function App() {
           <Route path='/' element={<Home movies={movies} />} />
           <Route path='/Trailer/:ytTrailerId' element={<Trailer />}/>
           <Route path="/Reviews/:movieId" element ={<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />} />
-          <Route path="*" element = {<NotFound/>} />
+          <Route path='/watchList' element = {<WatchList watchList={watchList} getMovieData={getMovie} />} />
+          <Route path="*" element = {<NotFound />} />
         </Route>
       </Routes>
     </div>
