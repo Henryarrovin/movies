@@ -1,9 +1,9 @@
 import React from 'react';
 import Hero from '../hero/Hero';
 
-const Home = ({ movies }) => {
+const Home = ({ movies, likedMovies, toggleLike }) => {
   return (
-    <Hero movies={movies} />
+    <Hero movies={movies} likedMovies={likedMovies} toggleLike={toggleLike}/>
   )
 }
 

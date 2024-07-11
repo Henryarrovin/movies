@@ -4,19 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
-const Movies = ({ movies }) => {
-    const [likedMovies, setLikedMovies] = useState([]);
+const Movies = ({ movies, likedMovies, toggleLike }) => {
     const [hoveredMovie, setHoveredMovie] = useState(null);
-
-    const toggleLike = (movieId) => {
-        if (likedMovies.includes(movieId)) {
-            // Unlike movie
-            setLikedMovies(likedMovies.filter(id => id !== movieId));
-        } else {
-            // Like movie
-            setLikedMovies([...likedMovies, movieId]);
-        }
-    };
 
     const isMovieLiked = (movieId) => likedMovies.includes(movieId);
 

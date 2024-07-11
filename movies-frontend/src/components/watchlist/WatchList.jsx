@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Movies from '../hero/Movies';
 
-const WatchList = ({ watchList, getMovieData }) => {
+const WatchList = ({ watchList, getMovieData, likedMovies, toggleLike }) => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const WatchList = ({ watchList, getMovieData }) => {
     }, [watchList, getMovieData]);
     
   return (
-    <Movies movies={movies}/>
+    <Movies movies={movies} likedMovies={likedMovies} toggleLike={toggleLike}/>
   )
 }
 

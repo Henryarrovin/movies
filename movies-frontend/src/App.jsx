@@ -16,6 +16,7 @@ function App() {
   const [movie, setMovie] = useState();
   const [reviews, setReviews] = useState([]);
   const [watchList, setWatchList] = useState([]);
+  const [likedMovies, setLikedMovies] = useState([]);
 
   const getMovies = async () => {
     try {
@@ -57,9 +58,36 @@ function App() {
     }
   }
 
+  const toggleLike = async (movieId) => {
+    try {
+        if (likedMovies.includes(movieId)) {
+            await api.delete(`/watch-lists?imdbId=${movieId}`);
+            setLikedMovies(currentLikedMovies =>
+                currentLikedMovies.filter(id => id !== movieId)
+            );
+        } else {
+            await api.post('/watch-lists', { imdbId: movieId });
+            setLikedMovies(currentLikedMovies => [...currentLikedMovies, movieId]);
+        }
+    } catch (error) {
+        console.error('Error toggling like:', error);
+    }
+  };
+
   useEffect(() => {
     getMovies();
     getWatchList();
+
+    const fetchWatchList = async () => {
+      try {
+          const response = await api.get('/watch-lists');
+          setLikedMovies(response.data.map(item => item.imdbId));
+      } catch (error) {
+          console.error('Error fetching watchlist:', error);
+      }
+    };
+
+    fetchWatchList();
   }, []);
   
   return (
@@ -67,10 +95,10 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Layout />}>
-          <Route path='/' element={<Home movies={movies} />} />
+          <Route path='/' element={<Home movies={movies} likedMovies={likedMovies} toggleLike={toggleLike}/>} />
           <Route path='/Trailer/:ytTrailerId' element={<Trailer />}/>
           <Route path="/Reviews/:movieId" element ={<Reviews getMovieData = {getMovieData} movie={movie} reviews ={reviews} setReviews = {setReviews} />} />
-          <Route path='/watchList' element = {<WatchList watchList={watchList} getMovieData={getMovie} />} />
+          <Route path='/watchList' element = {<WatchList watchList={watchList} getMovieData={getMovie} toggleLike={toggleLike} likedMovies={likedMovies}/>} />
           <Route path="*" element = {<NotFound />} />
         </Route>
       </Routes>

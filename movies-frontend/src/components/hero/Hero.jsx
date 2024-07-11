@@ -8,7 +8,7 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Movies from './Movies';
 
-const Hero = ({ movies }) => {
+const Hero = ({ movies, likedMovies, toggleLike }) => {
 
     const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const Hero = ({ movies }) => {
         <div className="movie-title">
             <h4>Movies</h4>
         </div>
-        <Movies movies={movies} />
+        <Movies movies={movies} likedMovies={likedMovies} toggleLike={toggleLike}/>
     </div>
   )
 }
